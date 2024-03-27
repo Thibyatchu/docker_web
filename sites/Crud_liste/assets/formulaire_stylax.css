@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('image.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    text-align: center;
+  }
+  
+  form {
+    padding: 150px;
+    border-radius: 2px;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+    border: 1px solid black; /* Ajout de la bordure noire */
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 1px 2px;
+    margin-bottom: 15px;
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: #ffffff;
+  }
+  
+  input[type="submit"] {
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
