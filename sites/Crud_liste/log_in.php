@@ -6,10 +6,10 @@
 
         // Récupérer les données du formulaire
         $login = $_POST['login'];
-        $password = $_POST['password'];
+        $password = $_POST['mdp'];
 
         // Requête SQL paramétrée pour vérifier l'existence de l'utilisateur
-        $sql = "SELECT identifiant, mdp FROM connexion WHERE identifiant=:login";
+        $sql = "SELECT login, mdp FROM connexion WHERE login=:login";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':login', $login);
         $stmt->execute();
@@ -39,7 +39,7 @@
             <input type="text" name="login"><br><br>
 
             Password :<br>
-            <input type="password" name="password"><br><br>
+            <input type="password" name="mdp"><br><br>
 
             Se connecter :<br>
             <input type="submit" value="Envoyer"><br><br>

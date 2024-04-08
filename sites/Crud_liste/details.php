@@ -48,7 +48,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
             <section class="col-12">
                 <h1>Détails du compte</h1>
                 <p>ID : <?= $produit['id'] ?></p>
-                <p>Identifiant : <?= $produit['identifiant'] ?></p>
+                <p>Identifiant : <?= $produit['login'] ?></p>
                 <p>Mot de Passe : <?= $produit['mdp'] ?></p>
                 <p><a href="crud.php">Retour</a> <a href="edit.php?id=<?= $produit['id'] ?>">Modifier</a></p>
             </section>

@@ -3,7 +3,7 @@
 session_start();
 
 if($_POST){
-    if(isset($_POST['identifiant']) && !empty($_POST['identifiant'])
+    if(isset($_POST['login']) && !empty($_POST['login'])
     && isset($_POST['mdp']) && !empty($_POST['mdp'])){
         // On inclut la connexion à la base
         require_once('includes/db.php');
@@ -11,15 +11,15 @@ if($_POST){
 
         // On nettoie les données envoyées
         $produit = strip_tags($_POST['id']);
-        $identifiant = strip_tags($_POST['identifiant']);
+        $login = strip_tags($_POST['login']);
         $mdp = strip_tags($_POST['mdp']);
         $hashedPassword = password_hash($mdp, PASSWORD_DEFAULT);
 
-        $sql = 'INSERT INTO `connexion` (`identifiant`, `mdp`) VALUES (:identifiant, :mdp);';
+        $sql = 'INSERT INTO `connexion` (`login`, `mdp`) VALUES (:login, :mdp);';
 
         $query = $conn->prepare($sql);
 
-        $query->bindValue(':identifiant', $identifiant, PDO::PARAM_STR);
+        $query->bindValue(':login', $login, PDO::PARAM_STR);
         $query->bindValue(':mdp', $hashedPassword, PDO::PARAM_STR);
 
         $query->execute();

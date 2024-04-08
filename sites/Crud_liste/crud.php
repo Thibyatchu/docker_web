@@ -10,7 +10,7 @@ if (!isset($_SESSION['login'])) {
 require_once('includes/db.php');
 $conn = connect();
 
-$sql = 'SELECT * FROM `manwha`';
+$sql = 'SELECT * FROM personnage';
 
 // On prépare la requête
 $query = $conn->prepare($sql);
@@ -42,32 +42,42 @@ $conn = null;
             }
         }
     </script>
-    
 </head>
 <body>
     <main class="container">
         <div class="row">
             <section class="col-12">
-                <h1>Liste des Comptes</h1>
+                <h1>Liste des Personnages</h1>
                 <table class="table">
                     <thead>
                         <th>ID</th>
-                        <th>Titre</th>
-                        <th>Auteur</th>
-                        <th>Description</th>
-                        <th>Actions</th>
+                        <th>Nom</th>
+                        <th>Surnom</th>
+                        <th>Age</th>
+                        <th>Espèce</th>
+                        <th>Etat actuel</th>
+                        <th>Origine</th>
+                        <th>Pouvoir et Capacité</th>
+                        <th>Arme des Valkyries</th>
+                        <th>Histoire</th>
                     </thead>
                     <tbody>
                         <?php
                         // On boucle sur la variable $result
-                        foreach($result as $manga){
+                        foreach($result as $personnage){
                         ?>
                             <tr>
-                                <td><?= $manga['Id_Manwha'] ?></td>
-                                <td><?= $manga['titre'] ?></td>
-                                <td><?= $manga['auteur'] ?></td>
-                                <td><?= $manga['description'] ?></td>
-                                <td><a href="edit.php?id=<?= $manga['Id_Manwha'] ?>">Modifier</a> <button class="btn btn-danger" onclick="confirmDelete(<?= $manga['Id_Manwha'] ?>)">Supprimer</button></td>
+                                <td><?= $personnage['id_pers'] ?></td>
+                                <td><?= $personnage['nom'] ?></td>
+                                <td><?= $personnage['surnom'] ?></td>
+                                <td><?= $personnage['age'] ?></td>
+                                <td><?= $personnage['espece'] ?></td>
+                                <td><?= $personnage['etat_actuel'] ?></td>
+                                <td><?= $personnage['origine'] ?></td>
+                                <td><?= $personnage['pouvoir_capacite'] ?></td>
+                                <td><?= $personnage['arme_valkyrie'] ?></td>
+                                <td><?= $personnage['histoire'] ?></td>
+                                <td><a href="edit.php?id=<?= $personnage['id_pers'] ?>">Modifier</a> <button class="btn btn-danger" onclick="confirmDelete(<?= $personnage['id_pers'] ?>)">Supprimer</button></td>
                         <?php
                         }
                         ?>

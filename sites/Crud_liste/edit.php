@@ -4,7 +4,7 @@ session_start();
 
 if($_POST){
     if(isset($_POST['id']) && !empty($_POST['id'])
-    && isset($_POST['identifiant']) && !empty($_POST['identifiant'])
+    && isset($_POST['login']) && !empty($_POST['login'])
     && isset($_POST['mdp']) && !empty($_POST['mdp'])){
         // On inclut la connexion à la base
         require_once('includes/db.php');
@@ -12,18 +12,18 @@ if($_POST){
 
         // On nettoie les données envoyées
         $id = strip_tags($_POST['id']);
-        $produit = strip_tags($_POST['identifiant']);
+        $produit = strip_tags($_POST['login']);
         $prix = strip_tags($_POST['mdp']);
 
         $hashedPassword = password_hash($prix, PASSWORD_DEFAULT);
 
 
-        $sql = 'UPDATE `connexion` SET `id`=:id, `identifiant`=:identifiant, `mdp`=:mdp WHERE `id`=:id;';
+        $sql = 'UPDATE `connexion` SET `id`=:id, `login`=:login, `mdp`=:mdp WHERE `id`=:id;';
 
         $query = $conn->prepare($sql);
 
         $query->bindValue(':id', $id, PDO::PARAM_INT);
-        $query->bindValue(':identifiant', $produit, PDO::PARAM_STR);
+        $query->bindValue(':login', $produit, PDO::PARAM_STR);
         $query->bindValue(':mdp', $hashedPassword, PDO::PARAM_STR);
 
         $query->execute();
@@ -94,8 +94,8 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
                 <h1>Modifier un compte</h1>
                 <form method="post">
                     <div class="form-group">
-                        <label for="identifiant">Identifiant</label>
-                        <input type="text" id="identifiant" name="identifiant" class="form-control" value="<?= htmlspecialchars($produit['identifiant'])?>">
+                        <label for="login">Identifiant</label>
+                        <input type="text" id="login" name="login" class="form-control" value="<?= htmlspecialchars($produit['login'])?>">
 
                     </div>
                     <div class="form-group">

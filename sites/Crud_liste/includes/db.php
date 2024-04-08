@@ -4,7 +4,7 @@ function connect() {
     $servername="db";
     $username="root";
     $password="root";
-    $dbname="logs";
+    $dbname="site";
     
     try {
         // Connexion à la base de données

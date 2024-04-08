@@ -4,10 +4,10 @@
 require_once('includes/db.php');
 $conn = connect();
 
-// Requête pour récupérer les mangas
-$sql = "SELECT Id_Manwha, titre, auteur  FROM manwha ORDER BY Id_Manwha ASC";
+// Requête pour récupérer les personnages
+$sql = "SELECT id_pers, nom, surnom, age, espece, etat_actuel, origine, pouvoir_capacite, arme_valkyrie, histoire  FROM personnage ORDER BY id_pers ASC";
 $query = $conn->query($sql);
-$mangas = $query->fetchAll(PDO::FETCH_ASSOC);
+$personnage = $query->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -16,7 +16,7 @@ $mangas = $query->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Répertoire de mangas</title>
+    <title>Répertoire de personnage</title>
     <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
@@ -26,14 +26,14 @@ $mangas = $query->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
     <div class="manga-container">
-        <?php foreach ($mangas as $manga) : ?>
-            <div class="manga">
-                <h2><?php echo $manga['titre']; ?></h2>
+        <?php foreach ($personnage as $personnage) : ?>
+            <div class="personnage">
+                <h2><?php echo $personnage['nom']; ?></h2>
                 <?php
-                echo "<img class='img' src='assets/images/img_{$manga['Id_Manwha']}.png'>";
+                echo "<img class='img' src='assets/images/img_{$personnage['id_pers']}.png'>";
                 ?>
-                <p><strong>Auteur :</strong> <?php echo $manga['auteur']; ?></p>
-                <a href="fiche-manga.php?id=<?php echo $manga['Id_Manwha']; ?>">Voir la fiche</a>
+                <p><strong>Nom :</strong> <?php echo $personnage['nom']; ?></p>
+                <a href="fiche-perso.php?id=<?php echo $personnage['id_pers']; ?>">Voir la fiche</a>
             </div>
         <?php endforeach; ?>
     </div>

@@ -13,7 +13,7 @@
             <input type="text" name="login"><br><br>
 
             Password :<br>
-            <input type="password" name="password"><br><br>
+            <input type="password" name="mdp"><br><br>
 
             Se connecter :<br>
             <input type="submit" value="Envoyer"><br><br>
@@ -26,18 +26,18 @@
                     echo "connection";
                     $conn = connect();
     
-                    $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                    $_POST['mdp'] = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
     
                     // Préparer la requête d'insertion
-                    $requete = $conn->prepare("INSERT INTO connexion ( identifiant, mdp) VALUES (:login, :password);");
+                    $requete = $conn->prepare("INSERT INTO connexion ( login, mdp) VALUES (:login, :mdp);");
                     
                     // Récupération des données du formulaire
                     $login = $_POST['login'];
-                    $password = $_POST['password'];
+                    $mdp = $_POST['mdp'];
                 
                     // Liaison des paramètres
                     $requete->bindParam(':login', $login);
-                    $requete->bindParam(':password', $password);
+                    $requete->bindParam(':mdp', $mdp);
                 
                     // Exécution de la requête
                     $result = $requete->execute(); 
