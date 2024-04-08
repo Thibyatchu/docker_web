@@ -39,7 +39,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         <p><strong>Espèce :</strong><?php echo $personnage['espece']; ?></p>
         <p><strong>Etat actuel :</strong><?php echo $personnage['etat_actuel']; ?></p>
         <p><strong>Origine :</strong><?php echo $personnage['origine']; ?></p>
-        <p><?php echo $personnage['pouvoir_capacité']; ?></p>
+        <p><?php echo $personnage['pouvoir_capacite']; ?></p>
         <p><?php echo $personnage['arme_valkyrie']; ?></p>
         <p><?php echo $personnage['histoire']; ?></p>
         <a href="index.php">Retour à la liste des personnages</a>
