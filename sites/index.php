@@ -5,7 +5,7 @@ require_once('includes/db.php');
 $conn = connect();
 
 // Requête pour récupérer les personnages
-$sql = "SELECT id_pers, nom, surnom, age, espece, etat_actuel, origine, pouvoir_capacite, arme_valkyrie, histoire  FROM personnage ORDER BY id_pers ASC";
+$sql = "SELECT id_pers, nom, surnom  FROM personnage ORDER BY id_pers ASC";
 $query = $conn->query($sql);
 $personnage = $query->fetchAll(PDO::FETCH_ASSOC);
 

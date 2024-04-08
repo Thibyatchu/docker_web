@@ -1,24 +1,4 @@
-<!doctype html>
-<html lang = "fr">
-    <head>
-        <meta charset="UTF-8">
-        <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-        <title>Se créer un compte</title>
-        <link rel="stylesheet" href="assets/formulaire_stylax.css">
-    
-    </head>
-    <body>
-        <form method="post" action="register.php">
-            Login :<br>
-            <input type="text" name="login"><br><br>
-
-            Password :<br>
-            <input type="password" name="mdp"><br><br>
-
-            Se connecter :<br>
-            <input type="submit" value="Envoyer"><br><br>
-            <a href="log_in.php">J'ai deja un compte</a><br><br>
-            <?php
+<?php
 
                 if (!empty($_POST)){
 
@@ -53,6 +33,27 @@
                 
             } 
         ?>
+<!doctype html>
+<html lang = "fr">
+    <head>
+        <meta charset="UTF-8">
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+        <title>Se créer un compte</title>
+        <link rel="stylesheet" href="assets/formulaire_stylax.css">
+    
+    </head>
+    <body>
+        <form method="post" action="register.php">
+            Login :<br>
+            <input type="text" name="login"><br><br>
+
+            Password :<br>
+            <input type="password" name="mdp"><br><br>
+
+            Se connecter :<br>
+            <input type="submit" value="Envoyer"><br><br>
+            <a href="log_in.php">J'ai deja un compte</a><br><br>
+        
         </form>
     </body>
 </html>

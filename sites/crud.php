@@ -57,9 +57,6 @@ $conn = null;
                         <th>Espèce</th>
                         <th>Etat actuel</th>
                         <th>Origine</th>
-                        <th>Pouvoir et Capacité</th>
-                        <th>Arme des Valkyries</th>
-                        <th>Histoire</th>
                     </thead>
                     <tbody>
                         <?php
@@ -74,9 +71,6 @@ $conn = null;
                                 <td><?= $personnage['espece'] ?></td>
                                 <td><?= $personnage['etat_actuel'] ?></td>
                                 <td><?= $personnage['origine'] ?></td>
-                                <td><?= $personnage['pouvoir_capacite'] ?></td>
-                                <td><?= $personnage['arme_valkyrie'] ?></td>
-                                <td><?= $personnage['histoire'] ?></td>
                                 <td><a href="edit.php?id=<?= $personnage['id_pers'] ?>">Modifier</a> <button class="btn btn-danger" onclick="confirmDelete(<?= $personnage['id_pers'] ?>)">Supprimer</button></td>
                         <?php
                         }
@@ -85,7 +79,7 @@ $conn = null;
                 </table>
                 <a href="add.php" class="btn btn-primary">Ajouter un compte</a>
                 <br><br>
-                <a href="logout.php">Déconnexion</a>
+                <a href="index.php">Déconnexion</a>
             </section>
         </div>
     </main>

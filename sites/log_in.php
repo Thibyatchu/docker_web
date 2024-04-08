@@ -44,6 +44,7 @@
             Se connecter :<br>
             <input type="submit" value="Envoyer"><br><br>
             <a href="register.php">Se créer un compte</a><br><br>
+            <a href="index.php">Retour à la liste des personnages</a>
         </form>
         
     </body>
