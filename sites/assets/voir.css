@@ -13,6 +13,12 @@ h1 {
     margin-bottom: 30px;
 }
 
+.manga-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20x;
+}
+
 .manga {
     background-color: #333; /* Couleur de fond des cellules */
     border-radius: 5px;
@@ -30,11 +36,12 @@ h2 {
 
 img {
     display: block;
-    width: 20%;
-    height: 20%;
+    max-width: 100%; /* Ajuste la largeur maximale à 100% de la largeur parente */
+    height: 50%; /* Assure le redimensionnement proportionnel en fonction de la largeur */
     border-radius: 5px;
     margin-bottom: 10px;
 }
+
 
 p {
     margin-bottom: 10px;

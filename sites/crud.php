@@ -38,7 +38,7 @@ $conn = null;
         function confirmDelete(id) {
             var result = confirm("Êtes-vous sûr de vouloir supprimer ce produit ?");
             if (result) {
-                window.location.href = 'delete.php?id=' + id;
+                window.location.href = 'delete.php?id_pers=' + id;
             }
         }
     </script>
@@ -71,13 +71,13 @@ $conn = null;
                                 <td><?= $personnage['espece'] ?></td>
                                 <td><?= $personnage['etat_actuel'] ?></td>
                                 <td><?= $personnage['origine'] ?></td>
-                                <td><a href="edit.php?id=<?= $personnage['id_pers'] ?>">Modifier</a> <button class="btn btn-danger" onclick="confirmDelete(<?= $personnage['id_pers'] ?>)">Supprimer</button></td>
+                                <td><a href="edit.php?id_pers=<?= $personnage['id_pers'] ?>">Modifier</a> <button class="btn btn-danger" onclick="confirmDelete(<?= $personnage['id_pers'] ?>)">Supprimer</button></td>
                         <?php
                         }
                         ?>
                     </tbody>
                 </table>
-                <a href="add.php" class="btn btn-primary">Ajouter un compte</a>
+                <a href="add.php" class="btn btn-primary">Ajouter un personnage</a>
                 <br><br>
                 <a href="index.php">Déconnexion</a>
             </section>

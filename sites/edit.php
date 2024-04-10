@@ -26,7 +26,7 @@ if($_POST){
 
 
 
-        $sql = 'UPDATE `personnage` SET `id_pers`=:id, `nom`=:nom, `surnom`=:surnom, `age`=:age, `espece`=:espece, `etat_actuel`=:etat_actuel, `origine`=:origine WHERE `id_pers`=:id;';
+        $sql = 'UPDATE `personnage` SET `id_pers`=:id, `nom`=:nom, `surnom`=:surnom, `age`=:age, `espece`=:espece, `etat_actuel`=:etat_actuel, `origine`=:origine WHERE `id_pers`=:id_pers;';
 
         $query = $conn->prepare($sql);
 
@@ -50,20 +50,20 @@ if($_POST){
 }
 
 // Est-ce que l'id existe et n'est pas vide dans l'URL
-if(isset($_GET['id']) && !empty($_GET['id'])){
+if(isset($_GET['id_pers']) && !empty($_GET['id_pers'])){
     require_once('includes/db.php');
     $conn = connect();
 
     // On nettoie l'id envoyé
-    $id = strip_tags($_GET['id']);
+    $id_pers = strip_tags($_GET['id_pers']);
 
-    $sql = 'SELECT * FROM `personnage` WHERE `id_pers` = :id;';
+    $sql = 'SELECT * FROM `personnage` WHERE `id_pers` = :id_pers;';
 
     // On prépare la requête
     $query = $conn->prepare($sql);
 
     // On "accroche" les paramètre (id)
-    $query->bindValue(':id', $id, PDO::PARAM_INT);
+    $query->bindValue(':id_pers', $id_pers, PDO::PARAM_INT);
 
     // On exécute la requête
     $query->execute();
@@ -87,7 +87,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modifier un produit</title>
+    <title>Modifier un personnage</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
@@ -103,15 +103,15 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
                         $_SESSION['erreur'] = "";
                     }
                 ?>
-                <h1>Modifier un compte</h1>
+                <h1>Modifier un personnage</h1>
                 <form method="post">
                     <div class="form-group">
-                        <label for="nom">Identifiant</label>
+                        <label for="nom">Nom</label>
                         <input type="text" id="nom" name="nom" class="form-control" value="<?= htmlspecialchars($produit['nom'])?>">
 
                     </div>
                     <div class="form-group">
-                        <label for="surnom">Mot de passe</label>
+                        <label for="surnom">Surnom</label>
                         <input type="text" id="surnom" name="surnom" class="form-control" value="<?= $produit['surnom']?>">
                     </div>
                     <div class="form-group">
@@ -130,8 +130,9 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
                         <label for="origine">Origine</label>
                         <input type="text" id="origine" name="origine" class="form-control" value="<?= htmlspecialchars($produit['origine'])?>">
                     </div>       
-                    <input type="hidden" value="<?= $produit['id_pers']?>" name="id">
-                    <button class="btn btn-primary">Envoyer</button>
+                    <input type="hidden" value="<?= $produit['id_pers']?>" name="id_pers">
+                    <button class="btn btn-primary">Envoyer</button><br><br>
+                    <a href="crud.php" class="btn btn-primary">Retour à la liste</a>
                 </form>
             </section>
         </div>

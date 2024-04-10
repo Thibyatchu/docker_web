@@ -15,7 +15,7 @@ if($_POST){
         $mdp = strip_tags($_POST['mdp']);
         $hashedPassword = password_hash($mdp, PASSWORD_DEFAULT);
 
-        $sql = 'INSERT INTO `connexion` (`login`, `mdp`) VALUES (:login, :mdp);';
+        $sql = 'INSERT INTO `personnage` (`nom`, `surnom`, `age`, `espece`, `etat_actuel`, `origine`, `pouvoir_capacite`, `arme_valkyrie`, `histoire`) VALUES (:login, :mdp);';
 
         $query = $conn->prepare($sql);
 
@@ -55,19 +55,48 @@ if($_POST){
                         $_SESSION['erreur'] = "";
                     }
                 ?>
-                <h1>Ajouter un compte</h1>
+                <h1>Ajouter un personnage</h1>
                 <form method="post">
                     <div class="form-group">
-                        <label for="identifiant">Identifiant</label>
-                        <input type="text" id="identifiant" name="identifiant" class="form-control">
+                        <label for="nom">Nom</label>
+                        <input type="text" id="nom" name="nom" class="form-control">
 
                     </div>
                     <div class="form-group">
-                        <label for="mdp">Mot de Passe</label>
-                        <input type="password" id="mdp" name="mdp" class="form-control">
+                        <label for="surnom">Surnom</label>
+                        <input type="text" id="surnom" name="surnom" class="form-control">
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="text" id="age" name="age" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="espece">Espece</label>
+                        <input type="text" id="espece" name="espece" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="etat_actuel">Etat Actuel</label>
+                        <input type="text" id="etat_actuel" name="etat_actuel" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="origine">Origine</label>
+                        <input type="text" id="origine" name="origine" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="pouvoir_capacite">Pouvoir et Capacite</label>
+                        <input type="text" id="pouvoir_capacite" name="pouvoir_capacite" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="arme_valkyrie">Arme des Valkyries</label>
+                        <input type="text" id="arme_valkyrie" name="arme_valkyrie" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="histoire">Histoire</label>
+                        <input type="text" id="histoire" name="histoire" class="form-control">
                     </div>
                     <button class="btn btn-primary">Envoyer</button><br><br>
-                    <a href="welcome.php" class="btn btn-primary">Retour au CRUD</a>
+                    <a href="crud.php" class="btn btn-primary">Retour à la liste</a>
                 </form>
             </section>
         </div>

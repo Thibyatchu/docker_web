@@ -9,7 +9,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id_pers = $_GET['id'];
 
     // Requête pour récupérer les informations du personnage spécifié par son ID
-    $sql = "SELECT nom, surnom, age, espece, etat_actuel, origine, pouvoir_capacite, arme_valkyrie, histoire description FROM personnage WHERE id_pers = :id";
+    $sql = "SELECT nom, surnom, age, espece, etat_actuel, origine, pouvoir_capacite, arme_valkyrie, histoire FROM personnage WHERE id_pers = :id";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':id', $id_pers);
     $stmt->execute();
@@ -31,7 +31,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         <link rel="stylesheet" href="assets/voir.css">
     </head>
     <body>
-        <div class="personnage">
+        <div class="img">
             <h2><?php echo $personnage['nom']; ?></h2>
             <img src="assets/images/img_<?php echo $id_pers; ?>.png" alt="<?php echo $personnage['nom']; ?>">
             <p><b>Surnom : </b> <?php echo $personnage['surnom']; ?></p>

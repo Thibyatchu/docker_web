@@ -2,20 +2,20 @@
 // On démarre une session
 session_start();
 // Est-ce que l'id existe et n'est pas vide dans l'URL
-if(isset($_GET['id']) && !empty($_GET['id'])){
+if(isset($_GET['id_pers']) && !empty($_GET['id_pers'])){
     require_once('includes/db.php');
     $conn = connect();
 
     // On nettoie l'id envoyé
-    $id = strip_tags($_GET['id']);
+    $id_pers = strip_tags($_GET['id_pers']);
 
-    $sql = 'SELECT * FROM `connexion` WHERE `id` = :id;';
+    $sql = 'SELECT * FROM `personnage` WHERE `id_pers` = :id_pers;';
 
     // On prépare la requête
     $query = $conn->prepare($sql);
 
     // On "accroche" les paramètre (id)
-    $query->bindValue(':id', $id, PDO::PARAM_INT);
+    $query->bindValue(':id_pers', $id_pers, PDO::PARAM_INT);
 
     // On exécute la requête
     $query->execute();
@@ -30,17 +30,17 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
         die();
     }
 
-    $sql = 'DELETE FROM `connexion` WHERE `id` = :id;';
+    $sql = 'DELETE FROM `personnage` WHERE `id_pers` = :id_pers;';
 
     // On prépare la requête
     $query = $conn->prepare($sql);
 
     // On "accroche" les paramètre (id)
-    $query->bindValue(':id', $id, PDO::PARAM_INT);
+    $query->bindValue(':id_pers', $id_pers, PDO::PARAM_INT);
 
     // On exécute la requête
     $query->execute();
-    $_SESSION['message'] = "Produit supprimé";
+    $_SESSION['message'] = "Personnage supprimé";
     header('Location: crud.php');
 }
 else{
