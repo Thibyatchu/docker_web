@@ -41,7 +41,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             <p><b>Origine : </b><?php echo $personnage['origine']; ?></p>
             <p><b>Pouvoir et capacité : </b><?php echo $personnage['pouvoir_capacite']; ?></p>
             <p><b>Arme Valkyrie : </b><?php echo $personnage['arme_valkyrie']; ?></p>
-            <p><b>Histoire : </b><?php echo $personnage['histoire']; ?></p>
+            <p><b>Histoire : </b><?php echo $personnage['histoire']; ?></p><br></br>
             <a href="index.php">Retour à la liste des personnages</a>
         </div>
     </body>
