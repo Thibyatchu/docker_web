@@ -34,14 +34,14 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         <div class="personnage">
             <h2><?php echo $personnage['nom']; ?></h2>
             <img src="assets/images/img_<?php echo $id_pers; ?>.png" alt="<?php echo $personnage['nom']; ?>">
-            <p><strong>Surnom : </strong> <?php echo $personnage['surnom']; ?></p>
-            <p><strong>Age : </strong><?php echo $personnage['age']; ?> ans</p>
-            <p><strong>Espèce : </strong><?php echo $personnage['espece']; ?></p>
-            <p><strong>Etat actuel : </strong><?php echo $personnage['etat_actuel']; ?></p>
-            <p><strong>Origine : </strong><?php echo $personnage['origine']; ?></p>
-            <p><?php echo $personnage['pouvoir_capacite']; ?></p>
-            <p><?php echo $personnage['arme_valkyrie']; ?></p>
-            <p><?php echo $personnage['histoire']; ?></p>
+            <p><b>Surnom : </b> <?php echo $personnage['surnom']; ?></p>
+            <p><b>Age : </b><?php echo $personnage['age']; ?> ans</p>
+            <p><b>Espèce : </b><?php echo $personnage['espece']; ?></p>
+            <p><b>Etat actuel : </b><?php echo $personnage['etat_actuel']; ?></p>
+            <p><b>Origine : </b><?php echo $personnage['origine']; ?></p>
+            <p><b>Pouvoir et capacité : </b><?php echo $personnage['pouvoir_capacite']; ?></p>
+            <p><b>Arme Valkyrie : </b><?php echo $personnage['arme_valkyrie']; ?></p>
+            <p><b>Histoire : </b><?php echo $personnage['histoire']; ?></p>
             <a href="index.php">Retour à la liste des personnages</a>
         </div>
     </body>

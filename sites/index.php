@@ -20,7 +20,7 @@ $personnage = $query->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-    <h1>Répertoire de Manwha</h1>
+    <h1>Répertoire des Personnages</h1>
     <div class="log-in-link"> 
         <a href="log_in.php">Connexion admin</a>
     </div>
