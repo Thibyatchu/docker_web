@@ -31,18 +31,20 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         <link rel="stylesheet" href="assets/voir.css">
     </head>
     <body>
-        <div class="img">
-            <h2><?php echo $personnage['nom']; ?></h2>
-            <img src="assets/images/img_<?php echo $id_pers; ?>.png" alt="<?php echo $personnage['nom']; ?>">
-            <p><b>Surnom : </b> <?php echo $personnage['surnom']; ?></p>
-            <p><b>Age : </b><?php echo $personnage['age']; ?> ans</p>
-            <p><b>Espèce : </b><?php echo $personnage['espece']; ?></p>
-            <p><b>Etat actuel : </b><?php echo $personnage['etat_actuel']; ?></p>
-            <p><b>Origine : </b><?php echo $personnage['origine']; ?></p>
-            <p><b>Pouvoir et capacité : </b><?php echo $personnage['pouvoir_capacite']; ?></p>
-            <p><b>Arme Valkyrie : </b><?php echo $personnage['arme_valkyrie']; ?></p>
-            <p><b>Histoire : </b><?php echo $personnage['histoire']; ?></p><br></br>
-            <a href="index.php">Retour à la liste des personnages</a>
+        <div class="container">
+            <div class="img">
+                <h2><?php echo $personnage['nom']; ?></h2>
+                <img src="assets/images/img_<?php echo $id_pers; ?>.png" alt="<?php echo $personnage['nom']; ?>">
+                <p><b>Surnom : </b> <?php echo $personnage['surnom']; ?></p>
+                <p><b>Age : </b><?php echo $personnage['age']; ?> ans</p>
+                <p><b>Espèce : </b><?php echo $personnage['espece']; ?></p>
+                <p><b>Etat actuel : </b><?php echo $personnage['etat_actuel']; ?></p>
+                <p><b>Origine : </b><?php echo $personnage['origine']; ?></p>
+                <p><b>Pouvoir et capacité : </b><?php echo $personnage['pouvoir_capacite']; ?></p>
+                <p><b>Arme Valkyrie : </b><?php echo $personnage['arme_valkyrie']; ?></p>
+                <p><b>Histoire : </b><?php echo $personnage['histoire']; ?></p><br></br>
+                <a href="index.php">Retour à la liste des personnages</a>
+            </div>
         </div>
     </body>
 </html>

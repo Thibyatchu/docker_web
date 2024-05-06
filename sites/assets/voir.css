@@ -17,6 +17,11 @@ h1 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20x;
+    
+}
+
+.container {
+    text-align: center;
 }
 
 .manga {
@@ -39,8 +44,9 @@ img {
     max-width: 100%; /* Ajuste la largeur maximale à 100% de la largeur parente */
     height: 50%; /* Assure le redimensionnement proportionnel en fonction de la largeur */
     border-radius: 5px;
-    margin-bottom: 10px;
+    margin: 0 auto 10px auto; /* Centre l'image horizontalement avec une marge de 10px en bas */
 }
+
 
 
 p {
@@ -55,4 +61,17 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.worlds a {
+    float: left; /* Aligner à gauche */
+    width: calc(33.33% - 20px); /* Largeur égale pour trois colonnes */
+    height: 380px; /* Hauteur fixe */
+    margin: 10px; /* Marge extérieure */
+    background-color: rgb(58, 58, 58); /* Fond gris foncé */
+    padding: 40px; /* Remplissage intérieur */
+    box-sizing: border-box; /* Inclure les bordures et le remplissage dans la largeur */
+    text-decoration: none;
+    color: #fff;
+    position: relative;
 }
