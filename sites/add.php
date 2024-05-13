@@ -95,6 +95,10 @@ if($_POST){
                         <label for="histoire">Histoire</label>
                         <input type="text" id="histoire" name="histoire" class="form-control">
                     </div>
+                    <div>
+                        <label for="file">Image: </label>
+                        <input type="file" name="file">
+                    </div>
                     <button class="btn btn-primary">Envoyer</button><br><br>
                     <a href="crud.php" class="btn btn-primary">Retour à la liste</a>
                 </form>

@@ -10,6 +10,9 @@ if($_POST){
     && isset($_POST['espece']) && !empty($_POST['espece'])
     && isset($_POST['etat_actuel']) && !empty($_POST['etat_actuel'])
     && isset($_POST['origine']) && !empty($_POST['origine'])
+    && isset($_POST['pouvoir_capacite']) && !empty($_POST['pouvoir_capacite'])
+    && isset($_POST['arme_valkyrie']) && !empty($_POST['arme_valkyrie'])
+    && isset($_POST['histoire']) && !empty($_POST['histoire'])
     ){
         // On inclut la connexion à la base
         require_once('includes/db.php');
@@ -23,20 +26,27 @@ if($_POST){
         $espece = strip_tags($_POST['espece']);
         $etat_actuel = strip_tags($_POST['etat_actuel']);
         $origine = strip_tags($_POST['origine']);
+        $pouvoir_capacite = strip_tags($_POST['pouvoir_capacite']);
+        $arme_valkyrie = strip_tags($_POST['arme_valkyrie']);
+        $histoire = strip_tags($_POST['histoire']);
 
 
 
-        $sql = 'UPDATE `personnage` SET `id_pers`=:id, `nom`=:nom, `surnom`=:surnom, `age`=:age, `espece`=:espece, `etat_actuel`=:etat_actuel, `origine`=:origine WHERE `id_pers`=:id_pers;';
+        $sql = 'UPDATE `personnage` SET `id_pers`=:id_pers, `nom`=:nom, `surnom`=:surnom, `age`=:age, `espece`=:espece, `etat_actuel`=:etat_actuel, `origine`=:origine, `pouvoir_capacite`=:pouvoir_capacite, `arme_valkyrie`=:arme_valkyrie, `histoire`=:histoire WHERE `id_pers`=:id_pers;';
 
         $query = $conn->prepare($sql);
 
-        $query->bindValue(':id', $id, PDO::PARAM_INT);
+        $query->bindValue(':id_pers', $id_pers, PDO::PARAM_INT);
         $query->bindValue(':nom', $nom, PDO::PARAM_STR);
         $query->bindValue(':surnom', $surnom, PDO::PARAM_STR);
         $query->bindValue(':age', $age, PDO::PARAM_INT);
         $query->bindValue(':espece', $espece, PDO::PARAM_INT);
         $query->bindValue(':etat_actuel', $etat_actuel, PDO::PARAM_INT);
         $query->bindValue(':origine', $origine, PDO::PARAM_INT);
+        $query->bindValue(':pouvoir_capacite', $pouvoir_capacite, PDO::PARAM_INT);
+        $query->bindValue(':arme_valkyrie', $arme_valkyrie, PDO::PARAM_INT);
+        $query->bindValue(':histoire', $histoire, PDO::PARAM_INT);
+
 
         $query->execute();
 
@@ -112,7 +122,7 @@ if(isset($_GET['id_pers']) && !empty($_GET['id_pers'])){
                     </div>
                     <div class="form-group">
                         <label for="surnom">Surnom</label>
-                        <input type="text" id="surnom" name="surnom" class="form-control" value="<?= $produit['surnom']?>">
+                        <input type="text" id="surnom" name="surnom" class="form-control" value="<?= htmlspecialchars($produit['surnom'])?>">
                     </div>
                     <div class="form-group">
                         <label for="age">Age</label>
@@ -129,7 +139,19 @@ if(isset($_GET['id_pers']) && !empty($_GET['id_pers'])){
                     <div class="form-group">
                         <label for="origine">Origine</label>
                         <input type="text" id="origine" name="origine" class="form-control" value="<?= htmlspecialchars($produit['origine'])?>">
-                    </div>       
+                    </div>      
+                    <div class="form-group">
+                        <label for="pouvoir_capacite">Pouvoir et capacité</label>
+                        <input type="text" id="pouvoir_capacite" name="pouvoir_capacite" class="form-control" value="<?= htmlspecialchars($produit['pouvoir_capacite'])?>">
+                    </div> 
+                    <div class="form-group">
+                        <label for="arme_valkyrie">Arme Valkyrie</label>
+                        <input type="text" id="arme_valkyrie" name="arme_valkyrie" class="form-control" value="<?= htmlspecialchars($produit['arme_valkyrie'])?>">
+                    </div> 
+                    <div class="form-group">
+                        <label for="histoire">Histoire</label>
+                        <input type="text" id="histoire" name="histoire" class="form-control" value="<?= htmlspecialchars($produit['histoire'])?>">
+                    </div>  
                     <input type="hidden" value="<?= $produit['id_pers']?>" name="id_pers">
                     <button class="btn btn-primary">Envoyer</button><br><br>
                     <a href="crud.php" class="btn btn-primary">Retour à la liste</a>
