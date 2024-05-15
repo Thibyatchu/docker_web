@@ -23,7 +23,7 @@ $pages = ceil($totalMangas / $elementsParPage);
 $offset = ($currentPage - 1) * $elementsParPage;
 
 // Requête pour récupérer les personnages
-$sql = "SELECT id_pers, nom, surnom  FROM personnage ORDER BY id_pers ASC";
+$sql = "SELECT id_pers, nom, surnom  FROM personnage ORDER BY id_pers ASC LIMIT $elementsParPage OFFSET $offset";
 $query = $conn->query($sql);
 $personnage = $query->fetchAll(PDO::FETCH_ASSOC);
 

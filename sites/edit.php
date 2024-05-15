@@ -39,18 +39,33 @@ if($_POST){
         $query->bindValue(':id_pers', $id_pers, PDO::PARAM_INT);
         $query->bindValue(':nom', $nom, PDO::PARAM_STR);
         $query->bindValue(':surnom', $surnom, PDO::PARAM_STR);
-        $query->bindValue(':age', $age, PDO::PARAM_INT);
-        $query->bindValue(':espece', $espece, PDO::PARAM_INT);
-        $query->bindValue(':etat_actuel', $etat_actuel, PDO::PARAM_INT);
-        $query->bindValue(':origine', $origine, PDO::PARAM_INT);
-        $query->bindValue(':pouvoir_capacite', $pouvoir_capacite, PDO::PARAM_INT);
-        $query->bindValue(':arme_valkyrie', $arme_valkyrie, PDO::PARAM_INT);
-        $query->bindValue(':histoire', $histoire, PDO::PARAM_INT);
+        $query->bindValue(':age', $age, PDO::PARAM_STR);
+        $query->bindValue(':espece', $espece, PDO::PARAM_STR);
+        $query->bindValue(':etat_actuel', $etat_actuel, PDO::PARAM_STR);
+        $query->bindValue(':origine', $origine, PDO::PARAM_STR);
+        $query->bindValue(':pouvoir_capacite', $pouvoir_capacite, PDO::PARAM_STR);
+        $query->bindValue(':arme_valkyrie', $arme_valkyrie, PDO::PARAM_STR);
+        $query->bindValue(':histoire', $histoire, PDO::PARAM_STR);
 
 
         $query->execute();
 
-        $_SESSION['message'] = "Produit modifié";
+        // Gestion de l'image
+        if (isset($_FILES['file'])) {
+            $tmpName = $_FILES['file']['tmp_name'];
+            $name = $_FILES['file']['name'];
+            $size = $_FILES['file']['size'];
+            $error = $_FILES['file']['error'];
+
+            // Vérifier s'il n'y a pas d'erreur lors du téléchargement
+            if ($error === UPLOAD_ERR_OK) {
+                // Déplacer le fichier téléchargé vers le répertoire souhaité
+                $newFileName = 'img_' . $id . '.png'; // Nom de fichier basé sur l'ID
+                move_uploaded_file($tmpName, 'assets/images/' . $newFileName);
+            }
+        }
+
+        $_SESSION['message'] = "Personnage modifié";
         require_once('includes/close.php');
 
         header('Location: crud.php');
@@ -152,6 +167,10 @@ if(isset($_GET['id_pers']) && !empty($_GET['id_pers'])){
                         <label for="histoire">Histoire</label>
                         <input type="text" id="histoire" name="histoire" class="form-control" value="<?= htmlspecialchars($produit['histoire'])?>">
                     </div>  
+                    <div class="form-group">
+                        <label for="file">Image: </label>
+                        <input type="file" name="file">
+                    </div>
                     <input type="hidden" value="<?= $produit['id_pers']?>" name="id_pers">
                     <button class="btn btn-primary">Envoyer</button><br><br>
                     <a href="crud.php" class="btn btn-primary">Retour à la liste</a>

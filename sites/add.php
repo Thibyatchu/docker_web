@@ -2,37 +2,83 @@
 // On démarre une session
 session_start();
 
+
+require_once('includes/db.php');
+
 if($_POST){
-    if(isset($_POST['login']) && !empty($_POST['login'])
-    && isset($_POST['mdp']) && !empty($_POST['mdp'])){
+    if(isset($_POST['nom']) && !empty($_POST['nom'])
+    && isset($_POST['surnom']) && !empty($_POST['surnom'])
+    && isset($_POST['age']) && !empty($_POST['age'])
+    && isset($_POST['espece']) && !empty($_POST['espece'])
+    && isset($_POST['etat_actuel']) && !empty($_POST['etat_actuel'])
+    && isset($_POST['origine']) && !empty($_POST['origine'])
+    && isset($_POST['pouvoir_capacite']) && !empty($_POST['pouvoir_capacite'])
+    && isset($_POST['arme_valkyrie']) && !empty($_POST['arme_valkyrie'])
+    && isset($_POST['histoire']) && !empty($_POST['histoire'])){
         // On inclut la connexion à la base
-        require_once('includes/db.php');
+        
         $conn = connect();
 
         // On nettoie les données envoyées
-        $produit = strip_tags($_POST['id']);
-        $login = strip_tags($_POST['login']);
-        $mdp = strip_tags($_POST['mdp']);
-        $hashedPassword = password_hash($mdp, PASSWORD_DEFAULT);
+        $nom = strip_tags($_POST['nom']);
+        $surnom = strip_tags($_POST['surnom']);
+        $age = strip_tags($_POST['age']);
+        $espece = strip_tags($_POST['espece']);
+        $etat_actuel = strip_tags($_POST['etat_actuel']);
+        $origine = strip_tags($_POST['origine']);
+        $pouvoir_capacite = strip_tags($_POST['pouvoir_capacite']);
+        $arme_valkyrie = strip_tags($_POST['arme_valkyrie']);
+        $histoire = strip_tags($_POST['histoire']);
+        
 
-        $sql = 'INSERT INTO `personnage` (`nom`, `surnom`, `age`, `espece`, `etat_actuel`, `origine`, `pouvoir_capacite`, `arme_valkyrie`, `histoire`) VALUES (:login, :mdp);';
+        $sql = 'INSERT INTO `personnage` (`nom`, `surnom`, `age`, `espece`, `etat_actuel`, `origine`, `pouvoir_capacite`, `arme_valkyrie`, `histoire`) VALUES (:nom, :surnom, :age, :espece, :etat_actuel, :origine, :pouvoir_capacite, :arme_valkyrie, :histoire);';
 
         $query = $conn->prepare($sql);
 
-        $query->bindValue(':login', $login, PDO::PARAM_STR);
-        $query->bindValue(':mdp', $hashedPassword, PDO::PARAM_STR);
+        $query->bindValue(':nom', $nom, PDO::PARAM_STR);
+        $query->bindValue(':surnom', $surnom, PDO::PARAM_STR);
+        $query->bindValue(':age', $age, PDO::PARAM_STR);
+        $query->bindValue(':espece', $espece, PDO::PARAM_STR);
+        $query->bindValue(':etat_actuel', $etat_actuel, PDO::PARAM_STR);
+        $query->bindValue(':origine', $origine, PDO::PARAM_STR);
+        $query->bindValue(':pouvoir_capacite', $pouvoir_capacite, PDO::PARAM_STR);
+        $query->bindValue(':arme_valkyrie', $arme_valkyrie, PDO::PARAM_STR);
+        $query->bindValue(':histoire', $histoire, PDO::PARAM_STR);
 
-        $query->execute();
+        $result = $query->execute();
 
-        $_SESSION['message'] = "Produit ajouté";
+        if ($result) {
+            // Get the ID of the newly inserted record
+            $lastInsertId = $conn->lastInsertId();
+
+            // Upload the file with the ID as its name
+            if (isset($_FILES['file'])) {
+                $tmpName = $_FILES['file']['tmp_name'];
+                $name = $_FILES['file']['name'];
+                $size = $_FILES['file']['size'];
+                $error = $_FILES['file']['error'];
+
+                // Construct the new filename using the ID
+                $newFileName = 'img_' . $lastInsertId . '.png';
+
+                // Move the uploaded file to the desired location with the new filename
+                move_uploaded_file($tmpName, 'assets/images/' . $newFileName);
+            }
+
+            header("Location: crud.php");
+            exit(); // Assurez-vous de sortir du script après la redirection
+        } else {
+            echo "Erreur lors de la création du block";
+        }
+
+        $_SESSION['message'] = "Manwha ajouté";
         require_once('includes/close.php');
 
         header('Location: crud.php');
-    }else{
+    } else {
         $_SESSION['erreur'] = "Le formulaire est incomplet";
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -56,7 +102,7 @@ if($_POST){
                     }
                 ?>
                 <h1>Ajouter un personnage</h1>
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="nom">Nom</label>
                         <input type="text" id="nom" name="nom" class="form-control">
